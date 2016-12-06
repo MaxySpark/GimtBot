@@ -1,0 +1,25 @@
+{
+  "name": "gimtbot",
+  "version": "1.0.0",
+  "description": "A Telegram Bot To Get Details About GIMT",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaxySpark/GimtBot.git"
+  },
+  "keywords": [
+    "Telegram",
+    "Bot",
+    "GIMT",
+    "MaxySpark"
+  ],
+  "author": "MaxySpark (devmaxyspark@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/MaxySpark/GimtBot/issues"
+  },
+  "homepage": "https://github.com/MaxySpark/GimtBot#readme"
+}
