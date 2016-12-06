@@ -71,7 +71,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             request.post((reply_url+'/sendDocument'),{
                 form:{
                     chat_id : body.message.chat.id,
-                    document : config.webhook + '/files/syllabus/BTECH/COMMON/BTech1st2014.pdf',
+                    document : config.webhook + '/syllabus/BTECH/COMMON/BTech1st2014.pdf',
                     caption : "Syllabus"
                 }
             });
