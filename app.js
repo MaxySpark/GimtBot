@@ -67,6 +67,16 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             });
             res.status(200).send('OK');
             next();
+        } else {
+request.post((reply_url+'/sendMessage'),{
+                form:{
+                    chat_id : body.message.chat.id,
+                    text : "<b>Invalid Choice</b>",
+                    parse_mode : "HTML",
+                }
+            });
+            res.status(200).send('OK');
+            next();
         }
         ignoreMessageIdList.push(body.update_id);
     }
