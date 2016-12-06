@@ -9,7 +9,7 @@
       "description": "Your Bot Token"
     },
     "WEBHOOK": {
-      "description": "Webhook For Your Bot"
+      "description": "Webhook For Your Bot (Must be https)"
     }
   }
 }
