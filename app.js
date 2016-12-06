@@ -67,8 +67,18 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             });
             res.status(200).send('OK');
             next();
+        } else if((body.message.text=="/\getsyllabus")) {
+            request.post((reply_url+'/sendDocument'),{
+                form:{
+                    chat_id : body.message.chat.id,
+                    document : config.webhook + '/files/syllabus/BTECH/COMMON/BTech1st2014.pdf',
+                    caption : "Syllabus"
+                }
+            });
+            res.status(200).send('OK');
+            next();
         } else {
-request.post((reply_url+'/sendMessage'),{
+            request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : body.message.chat.id,
                     text : "<b>Invalid Choice</b>",
