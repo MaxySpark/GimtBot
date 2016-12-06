@@ -18,7 +18,7 @@ request({
 });
 
 app.use(bodyParser.json());
-
+app.use(express.static('files'));
 app.get('/',function(req,res,next) {
     res.send("<h1 style='text-align:center; color: blueviolet;'>Welcome to GimtBot</h1>"
         +"<h3 style='text-align:center;'>"
