@@ -21,5 +21,11 @@
   "bugs": {
     "url": "https://github.com/MaxySpark/GimtBot/issues"
   },
-  "homepage": "https://github.com/MaxySpark/GimtBot#readme"
+  "homepage": "https://github.com/MaxySpark/GimtBot#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "request": "^2.79.0",
+    "underscore": "^1.8.3"
+  }
 }
