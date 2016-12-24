@@ -76,16 +76,18 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             next();
         } else if( CommandList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
                 var com = body.message.text.replace(/\//g,'');
+                var chatId = body.message.chat.id;
                 // console.log(body.message.chat.id),
                 // console.log(com);
-                Commands(reply_url, com, body.message.chat.id);
+                Commands(reply_url, com, chatId);
 
             res.status(200).send('OK');
             next();
         } else if( DownloadList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
                 var com = body.message.text.replace(/\//g,'');
+                var chatId = body.message.chat.id;
 
-                getDownload(reply_url, com, body.message.chat.id);
+                getDownload(reply_url, com, chatId);
 
             res.status(200).send('OK');
             next();
