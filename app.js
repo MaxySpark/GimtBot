@@ -5,6 +5,12 @@ var bodyParser = require('body-parser');
 var _ = require('underscore');
 var config = require('./lib/config');
 
+var CommandList = require('./lib/command.js').CommandList;
+var Commands = require('./lib/command.js').Command;
+
+var DownloadList = require('./lib/downloads.js').CommandList;
+var getDownload = require('./lib/downloads.js').Command;
+
 var port = process.env.PORT || 5000;
 var reply_url = "https://api.telegram.org/bot"+config.bot_token;
 var webhook_url = "https://api.telegram.org/bot"+config.bot_token+"/setWebhook?url="+config.webhook+'/'+config.bot_token;
@@ -52,7 +58,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : body.message.chat.id,
-                    text : "<b>Welcome</b>",
+                    text : "<b>Welcome</b>\n<b>Select a Command</b>",
                     parse_mode : "HTML",
                 }
             });
@@ -68,14 +74,18 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             });
             res.status(200).send('OK');
             next();
-        } else if((body.message.text=="/\getsyllabus")) {
-            request.post((reply_url+'/sendDocument'),{
-                form:{
-                    chat_id : body.message.chat.id,
-                    document : config.webhook + '/syllabus/BTECH/COMMON/BTech1st2014.pdf',
-                    caption : "Syllabus"
-                }
-            });
+        } else if( CommandList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
+                var com = body.message.text.replace(/\//g,'');
+
+                Commands(reply_url, com  body.message.chat.id);
+
+            res.status(200).send('OK');
+            next();
+        } else if( DownloadList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
+                var com = body.message.text.replace(/\//g,'');
+
+                getDownload(reply_url, com, body.message.chat.id);
+
             res.status(200).send('OK');
             next();
         } else {
