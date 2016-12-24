@@ -78,7 +78,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
                 var com = body.message.text.replace(/\//g,'');
                 // console.log(body.message.chat.id),
                 // console.log(com);
-                Commands(reply_url, com,  body.message.chat.id);
+                Commands(reply_url, com, body.message.chat.id);
 
             res.status(200).send('OK');
             next();
