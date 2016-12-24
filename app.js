@@ -19,17 +19,18 @@ request({
 
 app.use(bodyParser.json());
 app.use(express.static('files'));
+
 app.get('/',function(req,res,next) {
     res.send("<h1 style='text-align:center; color: blueviolet;'>Welcome to GimtBot</h1>"
         +"<h3 style='text-align:center;'>"
         +"<a href='https://telegram.me/GimtBot'>PLEASE VISIT</a></h3>");
     next();
-request({
-    url: "https://api.telegram.org/bot"+config.bot_token+'/getMe',
-    json : true
-}, (err,res,body)=>{
-    console.log(body);
-});
+    request({
+        url: "https://api.telegram.org/bot"+config.bot_token+'/getMe',
+        json : true
+        }, (err,res,body)=>{
+        console.log(body);
+    });
 });
 
 app.post('/'+config.bot_token , (req,res,next)=>{
