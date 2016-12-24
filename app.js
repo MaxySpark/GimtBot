@@ -77,7 +77,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
         } else if( CommandList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
                 var com = body.message.text.replace(/\//g,'');
 
-                Commands(reply_url, com  body.message.chat.id);
+                Commands(reply_url, com,  body.message.chat.id);
 
             res.status(200).send('OK');
             next();
