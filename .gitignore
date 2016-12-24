@@ -5,3 +5,5 @@ note.txt
 .idea/*
 npm-debug.log
 TEMP/
+.idea/
+TEST/
