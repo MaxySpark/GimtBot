@@ -63,21 +63,43 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : chatId,
-                    text : "<b>Welcome</b>\n<b>Select a Command</b>\n" +
-                    +"\/getdownloads  <b>- Get GIMT's Publications</b>\n"
-                    +"\/getcollegeinfo <b>- Get Information about The Institutuion</b>\n"
-                    +"\/getcontactinfo <b>- Get Contact Info Of The Institution</b>\n"
-                    +"\/getholidaylist <b>- Get Holiday List</b>\n"
-                    +"\/getsyllabus <b>- Get Syllabus</b>\n"
-                    +"\/getbotauthor <b>- Get Bot Author Details</b>\n"
-                    +"\/getchallan <b>- Get Challan For Fee Payment</b>\n",
+                    text : "<b>Welcome</b>\n<b>Select a Command</b>\n\n"
+                    +"\/getdownloads  <b>- Get GIMT's Publications</b>\n\n"
+                    +"\/getcollegeinfo <b>- Get Information about The Institutuion</b>\n\n"
+                    +"\/getcontactinfo <b>- Get Contact Info Of The Institution</b>\n\n"
+                    +"\/getholidaylist <b>- Get Holiday List</b>\n\n"
+                    +"\/getsyllabus <b>- Get Syllabus</b>\n\n"
+                    +"\/getbotauthor <b>- Get Bot Author Details</b>\n\n"
+                    +"\/getchallan <b>- Get Challan For Fee Payment</b>\n\n"
+                    +"\/help <b>- Get Command List</b>\n\n",
+                    
                     parse_mode : "HTML",
                     reply_markup : '{"remove_keyboard" : true}'
                 }
             });
             res.status(200).send('OK');
             next();
-        } 
+        } else if (msg == "help") {
+            request.post((reply_url+'/sendMessage'),{
+                form:{
+                    chat_id : chatId,
+                    text : "<b>Select a Command</b>\n\n"
+                    +"\/getdownloads  <b>- Get GIMT's Publications</b>\n\n"
+                    +"\/getcollegeinfo <b>- Get Information about The Institutuion</b>\n\n"
+                    +"\/getcontactinfo <b>- Get Contact Info Of The Institution</b>\n\n"
+                    +"\/getholidaylist <b>- Get Holiday List</b>\n\n"
+                    +"\/getsyllabus <b>- Get Syllabus</b>\n\n"
+                    +"\/getbotauthor <b>- Get Bot Author Details</b>\n\n"
+                    +"\/getchallan <b>- Get Challan For Fee Payment</b>\n\n"
+                    +"\/help <b>- Get Command List</b>\n\n",
+                    
+                    parse_mode : "HTML",
+                    reply_markup : '{"remove_keyboard" : true}'
+                }
+            });
+            res.status(200).send('OK');
+            next();
+        }
         
         else if(typeof (msg)== "undefined" ){
             request.post((reply_url+'/sendMessage'),{
