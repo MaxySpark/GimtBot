@@ -44,7 +44,9 @@ app.get('/',function(req,res,next) {
 
 app.post('/'+config.bot_token , (req,res,next)=>{
     var body = req.body;
-    var msg = body.message.text.replace(/\//g,'');
+    if(body.message.text) {
+        var msg = body.message.text.replace(/\//g,'');
+    }
     var chatId = body.message.chat.id;
     console.log('out');
     console.log('incoming msg id - ');
