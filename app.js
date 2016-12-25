@@ -99,6 +99,16 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             });
             res.status(200).send('OK');
             next();
+        } else if(typeof (body.message.text)== "undefined" ){
+            request.post((reply_url+'/sendMessage'),{
+                form:{
+                    chat_id : body.message.chat.id,
+                    text : "<b>Invalid Command</b>"+'\n'+"<b>Please Send Valid Command\nClick </b>\/help <b>For Command List</b>",
+                    parse_mode : "HTML",
+                }
+            });
+            res.status(200).send('OK');
+            next();
         }
         
         else if(typeof (msg)== "undefined" ){
