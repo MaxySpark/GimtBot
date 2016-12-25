@@ -63,16 +63,14 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : chatId,
-                    text : "<b>Welcome</b>\n<b>Select a Command</b>" +
-                    `
-                        \/getdownloads  <b>- Get GIMT's Publications</b>
-                        \/getcollegeinfo <b>- Get Information about The Institutuion</b>
-                        \/getcontactinfo <b>- Get Contact Info Of The Institution</b>
-                        \/getholidaylist <b>- Get Holiday List</b>
-                        \/getsyllabus <b>- Get Syllabus</b>
-                        \/getbotauthor <b>- Get Bot Author Details</b>
-                        \/getchallan <b>- Get Challan For Fee Payment</b>
-                    `,
+                    text : "<b>Welcome</b>\n<b>Select a Command</b>\n" +
+                    +"\/getdownloads  <b>- Get GIMT's Publications</b>\n"
+                    +"\/getcollegeinfo <b>- Get Information about The Institutuion</b>\n"
+                    +"\/getcontactinfo <b>- Get Contact Info Of The Institution</b>\n"
+                    +"\/getholidaylist <b>- Get Holiday List</b>\n"
+                    +"\/getsyllabus <b>- Get Syllabus</b>\n"
+                    +"\/getbotauthor <b>- Get Bot Author Details</b>\n"
+                    +"\/getchallan <b>- Get Challan For Fee Payment</b>\n",
                     parse_mode : "HTML",
                     reply_markup : '{"remove_keyboard" : true}'
                 }
