@@ -11,6 +11,9 @@ var Commands = require('./lib/command.js').Command;
 var DownloadList = require('./lib/downloads.js').CommandList;
 var getDownload = require('./lib/downloads.js').Command;
 
+var SyllabusList = require('./lib/syllabus').CommandList;
+var getSyllabus = require('./lib/syllabus').Command;
+
 var port = process.env.PORT || 5000;
 var reply_url = "https://api.telegram.org/bot"+config.bot_token;
 var webhook_url = "https://api.telegram.org/bot"+config.bot_token+"/setWebhook?url="+config.webhook+'/'+config.bot_token;
@@ -41,11 +44,13 @@ app.get('/',function(req,res,next) {
 
 app.post('/'+config.bot_token , (req,res,next)=>{
     var body = req.body;
+    var msg = body.message.text.replace(/\//g,'');
+    var chatId = body.message.chat.id;
     console.log('out');
     console.log('incoming msg id - ');
     console.log(body.update_id +'  '+ body.message.message_id + '  ' +body.message.text);
     console.log(body.message.from.first_name);
-    console.log(ignoreMessageIdList);
+    // console.log(ignoreMessageIdList);
     console.log('out');
 
     var filterMessageId = _.find(ignoreMessageIdList,(num)=>{
@@ -53,12 +58,11 @@ app.post('/'+config.bot_token , (req,res,next)=>{
     });
 
     if(typeof filterMessageId == "undefined") {
-         console.log(body.message.text);
-         
-        if((body.message.text=="/\start")){
+     
+        if((msg=="start")){
             request.post((reply_url+'/sendMessage'),{
                 form:{
-                    chat_id : body.message.chat.id,
+                    chat_id : chatId,
                     text : "<b>Welcome</b>\n<b>Select a Command</b>",
                     parse_mode : "HTML",
                 }
@@ -67,10 +71,10 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             next();
         } 
         
-        else if(typeof (body.message.text)== "undefined" ){
+        else if(typeof (msg)== "undefined" ){
             request.post((reply_url+'/sendMessage'),{
                 form:{
-                    chat_id : body.message.chat.id,
+                    chat_id : chatId,
                     text : "<b>Invalid Choice</b>",
                     parse_mode : "HTML",
                 }
@@ -79,9 +83,8 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             next();
         } 
         
-        else if( CommandList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
-                var com = body.message.text.replace(/\//g,'');
-                var chatId = body.message.chat.id;
+        else if( CommandList.hasOwnProperty(msg) ) {
+                var com = msg;
                 
                 Commands(reply_url, com, chatId);
 
@@ -89,9 +92,8 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             next();
         } 
         
-        else if( DownloadList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
-                var com = body.message.text.replace(/\//g,'');
-                var chatId = body.message.chat.id;
+        else if( DownloadList.hasOwnProperty(msg) ) {
+                var com = msg;
 
                 getDownload(reply_url, com, chatId);
 
@@ -99,10 +101,18 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             next();
         } 
         
+        else if( SyllabusList.hasOwnProperty(msg.toLowerCase()) ) {
+            var com = msg.toLowerCase();
+
+                getSyllabus(reply_url, com, chatId);
+
+            res.status(200).send('OK');
+            next();
+        }
         else {
             request.post((reply_url+'/sendMessage'),{
                 form:{
-                    chat_id : body.message.chat.id,
+                    chat_id : chatId,
                     text : "<b>Invalid Choice</b>",
                     parse_mode : "HTML",
                     reply_markup : '{"remove_keyboard" : true}'
