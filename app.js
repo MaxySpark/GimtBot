@@ -105,7 +105,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : body.message.chat.id,
-                    text : "<b>Invalid Command</b>"+'\n'+"<b>Please Send Valid Command\nClick </b>\/help <b>For Command List</b>",
+                    text : "<b>Invalid Command</b>"+'\n\n'+"<b>Please Send A Valid Command\n\nClick </b>\/help <b>For Command List</b>",
                     parse_mode : "HTML",
                 }
             });
