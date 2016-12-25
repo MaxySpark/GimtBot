@@ -97,6 +97,9 @@ app.post('/'+config.bot_token , (req,res,next)=>{
                     chat_id : body.message.chat.id,
                     text : "<b>Invalid Choice</b>",
                     parse_mode : "HTML",
+                    reply_markup : {
+		                                remove_keyboard : true
+	                                }
                 }
             });
             res.status(200).send('OK');
