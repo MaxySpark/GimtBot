@@ -1,7 +1,7 @@
 #GimtBot
 ###A Telegram Bot To Get Details About GIMT
 
-#####[GimtBot](https://telegram.me/GimtBot "GIMT Bot")
+##[GimtBot](https://telegram.me/GimtBot "GIMT Bot")
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
