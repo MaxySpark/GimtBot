@@ -54,6 +54,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
 
     if(typeof filterMessageId == "undefined") {
          console.log(body.message.text);
+
         if((body.message.text=="/\start")){
             request.post((reply_url+'/sendMessage'),{
                 form:{
@@ -64,7 +65,9 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             });
             res.status(200).send('OK');
             next();
-        } else if(typeof (body.message.text)== "undefined" ){
+        } 
+        
+        else if(typeof (body.message.text)== "undefined" ){
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : body.message.chat.id,
@@ -74,16 +77,19 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             });
             res.status(200).send('OK');
             next();
-        } else if( CommandList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
+        } 
+        
+        else if( CommandList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
                 var com = body.message.text.replace(/\//g,'');
                 var chatId = body.message.chat.id;
-                // console.log(body.message.chat.id),
-                // console.log(com);
+                
                 Commands(reply_url, com, chatId);
 
             res.status(200).send('OK');
             next();
-        } else if( DownloadList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
+        } 
+        
+        else if( DownloadList.hasOwnProperty(body.message.text.replace(/\//g,'')) ) {
                 var com = body.message.text.replace(/\//g,'');
                 var chatId = body.message.chat.id;
 
@@ -91,7 +97,9 @@ app.post('/'+config.bot_token , (req,res,next)=>{
 
             res.status(200).send('OK');
             next();
-        } else {
+        } 
+        
+        else {
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : body.message.chat.id,
