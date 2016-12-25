@@ -6,3 +6,4 @@
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ![Screenshot](http://i.imgur.com/q5701P1.jpg "Screenshot")
+![Screenshot2](http://i.imgur.com/oybnD6y.jpg "Screenshot2")
