@@ -113,19 +113,6 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             next();
         }
         
-        else if(typeof (msg)== "undefined" ){
-            request.post((reply_url+'/sendMessage'),{
-                form:{
-                    chat_id : chatId,
-                    text : "<b>Invalid Choice</b>",
-                    parse_mode : "HTML",
-                    reply_markup : '{"remove_keyboard" : true}'
-                }
-            });
-            res.status(200).send('OK');
-            next();
-        } 
-        
         else if( CommandList.hasOwnProperty(msg) ) {
                 var com = msg;
                 
@@ -156,7 +143,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
             request.post((reply_url+'/sendMessage'),{
                 form:{
                     chat_id : chatId,
-                    text : "<b>Invalid Choice</b>",
+                    text : "<b>Invalid Command</b>"+'\n\n'+"<b>Please Send A Valid Command\n\nClick </b>\/help <b>For Command List</b>",
                     parse_mode : "HTML",
                     reply_markup : '{"remove_keyboard" : true}'
                 }
