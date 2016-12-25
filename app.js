@@ -54,7 +54,7 @@ app.post('/'+config.bot_token , (req,res,next)=>{
 
     if(typeof filterMessageId == "undefined") {
          console.log(body.message.text);
-
+         
         if((body.message.text=="/\start")){
             request.post((reply_url+'/sendMessage'),{
                 form:{
